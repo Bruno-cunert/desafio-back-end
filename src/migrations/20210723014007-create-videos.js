@@ -13,6 +13,7 @@ module.exports = {
         allowNull: false,
       },
       descricao: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       url: {

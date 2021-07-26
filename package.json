@@ -1,0 +1,30 @@
+{
+  "name": "desafio-beack-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bruno-cunert/dasafio-back-end.git"
+  },
+  "author": "Bruno Cunert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bruno-cunert/dasafio-back-end/issues"
+  },
+  "homepage": "https://github.com/Bruno-cunert/dasafio-back-end#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "nodemon": "^2.0.12",
+    "path": "^0.12.7",
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}

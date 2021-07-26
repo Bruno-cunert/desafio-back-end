@@ -4,11 +4,12 @@ const FilmesController = require("../Controllers/FilmesController");
 const router = Router();
 
 router.get("/filmes", FilmesController.pegaTodosFilmes);
+router.get("/filmes/:id", FilmesController.pegaUmFilme);
 
-//router.post();
+router.post("/filmes", FilmesController.criaFilme);
 
-//router.put();
+router.put("/filmes/:id", FilmesController.atualizaFilme);
 
-//router.delete();
+router.delete("/filmes/:id", FilmesController.deletaFilme);
 
 module.exports = router;

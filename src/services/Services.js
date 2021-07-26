@@ -5,19 +5,19 @@ class Services {
     this.nomeModelo = nomeModelo;
   }
 
-  static async pegaTodosRegistros(where = {}) {
+  async pegaTodosRegistros(where = {}) {
     return database[this.nomeModelo].findAll({ where: { ...where } });
   }
-  static async pegaUmRegistro(where = {}) {
+  async pegaUmRegistro(where = {}) {
     return database[this.nomeModelo].findOne({ where: { ...where } });
   }
-  static async criaRegistro(dados) {
+  async criaRegistro(dados) {
     return database[this.nomeModelo].create(dados);
   }
-  static async apagaRegistro(id) {
+  async apagaRegistro(id) {
     return database[this.nomeModelo].destroy({ where: { id: id } });
   }
-  static async atualizarRegistro(novasInfos, id, transacao = {}) {
+  async atualizarRegistro(novasInfos, id, transacao = {}) {
     return database[this.nomeModelo].update(
       novasInfos,
       { where: { id: id } },

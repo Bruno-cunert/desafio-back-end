@@ -1,4 +1,3 @@
-const { ValidationError, ValidationErrorItem } = require("sequelize");
 const sequelize = require("sequelize");
 const FilmesServices = require("../services/FlimesServices");
 const filmesServices = new FilmesServices();

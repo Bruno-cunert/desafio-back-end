@@ -51,5 +51,14 @@ class FilmesController {
       return res.status(500).json(error.message);
     }
   }
+  static async pesquisaNome(req, res) {
+    const search = req.query.search;
+    try {
+      const filmesLike = await filmesServices.procuraLikeRegistros(search);
+      return res.status(200).json(filmesLike);
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
 }
 module.exports = FilmesController;

@@ -5,6 +5,7 @@ const router = Router();
 
 router.get("/filmes", FilmesController.pegaTodosFilmes);
 router.get("/filmes/:id", FilmesController.pegaUmFilme);
+router.get("/filmes/search/", FilmesController.pesquisaNome);
 
 router.post("/filmes", FilmesController.criaFilme);
 

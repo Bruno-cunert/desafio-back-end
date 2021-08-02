@@ -52,6 +52,15 @@ class CategoriasController {
       return res.status(500).json(error.message);
     }
   }
+  static async videosPorCategoria(req, res) {
+    const { id } = req.params;
+    try {
+      const videosDaCategoria = await categoriasServices.videosPorCategoria(id);
+      return res.status(200).json(videosDaCategoria);
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
 }
 
 module.exports = CategoriasController;

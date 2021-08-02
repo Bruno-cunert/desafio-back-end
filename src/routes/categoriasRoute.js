@@ -5,6 +5,7 @@ const router = Router();
 
 router.get("/categorias", CategoriasController.pegaTodasCategorias);
 router.get("/categorias/:id", CategoriasController.pegaUmCategoria);
+router.get("/categorias/:id/videos", CategoriasController.videosPorCategoria);
 
 router.post("/categorias", CategoriasController.criaCategoria);
 

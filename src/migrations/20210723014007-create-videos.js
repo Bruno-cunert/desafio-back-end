@@ -12,6 +12,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      categoriaId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 1,
+        refereces: { mondel: "categorias", key: "id" },
+      },
       descricao: {
         allowNull: false,
         type: Sequelize.STRING,

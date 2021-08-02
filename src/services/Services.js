@@ -1,4 +1,6 @@
+const { Sequelize } = require("../models");
 const database = require("../models");
+const Op = Sequelize.Op;
 
 class Services {
   constructor(nomeModelo) {
@@ -23,6 +25,15 @@ class Services {
       { where: { id: id } },
       transacao
     );
+  }
+  async procuraLikeRegistros(where) {
+    return database[this.nomeModelo].findAll({
+      where: {
+        titulo: {
+          [Op.like]: `%${where}%`,
+        },
+      },
+    });
   }
 }
 module.exports = Services;

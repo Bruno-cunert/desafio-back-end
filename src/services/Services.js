@@ -10,6 +10,11 @@ class Services {
   async pegaTodosRegistros(where = {}) {
     return database[this.nomeModelo].findAll({ where: { ...where } });
   }
+  async pegaTodosRegistrosPage(page) {
+    const limit = 5;
+    const offset = page * limit - 5;
+    return database[this.nomeModelo].findAll({ offset: offset, limit: limit });
+  }
   async pegaUmRegistro(where = {}) {
     return database[this.nomeModelo].findOne({ where: { ...where } });
   }

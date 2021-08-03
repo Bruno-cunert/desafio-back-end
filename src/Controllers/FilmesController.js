@@ -4,7 +4,7 @@ const filmesServices = new FilmesServices();
 
 class FilmesController {
   static async pegaTodosFilmes(req, res) {
-    const page = req.query.page;
+    const page = req.query.page ? req.query.page : 0;
     try {
       const todosFilmes = await filmesServices.pegaTodosRegistrosPage(page);
       return res.status(200).json(todosFilmes);

@@ -3,8 +3,11 @@ const categoriasServices = new CategoriasServices();
 
 class CategoriasController {
   static async pegaTodasCategorias(req, res) {
+    const page = req.query.page ? req.query.page : 0;
     try {
-      const todasCategorias = await categoriasServices.pegaTodosRegistros();
+      const todasCategorias = await categoriasServices.pegaTodosRegistrosPage(
+        page
+      );
       return res.status(200).json(todasCategorias);
     } catch (error) {
       return res.status(500).json(error.message);

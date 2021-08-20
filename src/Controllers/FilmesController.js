@@ -1,10 +1,12 @@
 const sequelize = require("sequelize");
 const FilmesServices = require("../services/FlimesServices");
 const filmesServices = new FilmesServices();
+const Auth = require("../middlewares/autenticacao");
 
 class FilmesController {
   static async pegaTodosFilmes(req, res) {
-    const page = req.query.page ? req.query.page : 0;
+    //console.log("é aqui");
+    const page = req.query.page ? req.query.page : 1;
     try {
       const todosFilmes = await filmesServices.pegaTodosRegistrosPage(page);
       return res.status(200).json(todosFilmes);
@@ -45,9 +47,17 @@ class FilmesController {
   }
   static async deletaFilme(req, res) {
     const { id } = req.params;
+    const idUserLogado = req.user.id;
+    const ownerPostId = await filmesServices.pegaCampoDoRegistro(id, "idUser");
+
+    const permissao = await Auth.temPermissao(idUserLogado, ownerPostId);
     try {
-      await filmesServices.apagaRegistro(id);
-      return res.status(200).json(`O id: ${id} foi apagado com sucesso`);
+      if (permissao == true) {
+        await filmesServices.apagaRegistro(id);
+        return res.status(200).json(`O id: ${id} foi apagado com sucesso`);
+      } else {
+        throw Error("ação nao permitida");
+      }
     } catch (error) {
       return res.status(500).json(error.message);
     }
@@ -57,6 +67,15 @@ class FilmesController {
     try {
       const filmesLike = await filmesServices.procuraLikeRegistros(search);
       return res.status(200).json(filmesLike);
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
+  static async filmesFree(req, res) {
+    console.log("é aqui");
+    try {
+      const listaFree = await filmesServices.pegaFilmesFree();
+      return res.status(200).json(listaFree);
     } catch (error) {
       return res.status(500).json(error.message);
     }

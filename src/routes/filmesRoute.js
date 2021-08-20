@@ -1,16 +1,42 @@
 const { Router } = require("express");
 const FilmesController = require("../Controllers/FilmesController");
-
+const passport = require("passport");
 const router = Router();
 
-router.get("/filmes", FilmesController.pegaTodosFilmes);
-router.get("/filmes/:id", FilmesController.pegaUmFilme);
-router.get("/filmes/search/", FilmesController.pesquisaNome);
+router.get("/filmes/free", FilmesController.filmesFree);
 
-router.post("/filmes", FilmesController.criaFilme);
+router.get(
+  "/filmes",
+  passport.authenticate("bearer", { session: false }),
+  FilmesController.pegaTodosFilmes
+);
+router.get(
+  "/filmes/:id",
+  passport.authenticate("bearer", { session: false }),
+  FilmesController.pegaUmFilme
+);
+router.get(
+  "/filmes/search/",
+  passport.authenticate("bearer", { session: false }),
+  FilmesController.pesquisaNome
+);
 
-router.put("/filmes/:id", FilmesController.atualizaFilme);
+router.post(
+  "/filmes",
+  passport.authenticate("bearer", { session: false }),
+  FilmesController.criaFilme
+);
 
-router.delete("/filmes/:id", FilmesController.deletaFilme);
+router.put(
+  "/filmes/:id",
+  passport.authenticate("bearer", { session: false }),
+  FilmesController.atualizaFilme
+);
+
+router.delete(
+  "/filmes/:id",
+  passport.authenticate("bearer", { session: false }),
+  FilmesController.deletaFilme
+);
 
 module.exports = router;

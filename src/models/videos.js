@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       Videos.belongsTo(models.categorias, {
         foreignKey: "categoriaId",
       });
+      Videos.belongsTo(models.users, {
+        foreignKey: "idUser",
+      });
     }
   }
   Videos.init(

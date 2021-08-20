@@ -40,5 +40,11 @@ class Services {
       },
     });
   }
+  async pegaCampoDoRegistro(idRegistro, campoDesejado) {
+    const registro = await database[this.nomeModelo].findOne({
+      where: { id: idRegistro },
+    });
+    return registro[campoDesejado];
+  }
 }
 module.exports = Services;
